@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "9dece4d7-950f-40cd-8764-b7a8c334e6dd",
+		"name": "BackendTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getUsers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('response status code should have 200 value', () => {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('response Content-Type header should have application/json value', () => {\r",
+							"   pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+							"}); \r",
+							"pm.test('response body should an object', () => {\r",
+							"   const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson).to.be.an('array');\r",
+							"}); \r",
+							"pm.test('response body should have the correct property and value', () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson[0]).to.have.ownProperty('_id');\r",
+							"   pm.expect(responseJson[0]).to.have.ownProperty('first_name');\r",
+							"   pm.expect(responseJson[0]).to.have.ownProperty('last_name');\r",
+							"   pm.expect(responseJson[0]).to.have.ownProperty('birthday_date');\r",
+							"   pm.expect(responseJson[0]).to.have.ownProperty('location');\r",
+							"   pm.expect(responseJson[0]).to.have.ownProperty('celebrated');\r",
+							"}); \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('response status code should have 201 value', () => {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test('response Content-Type header should have application/json value', () => {\r",
+							"   pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+							"}); \r",
+							"pm.test('response body should an object', () => {\r",
+							"   const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson).to.be.an('object');\r",
+							"}); \r",
+							"pm.test('response body should have the correct property and value', () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson).to.have.ownProperty('first_name');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('last_name');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('birthday_date');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('location');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('celebrated');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('_id');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('__v');\r",
+							"}); \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "melon true",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Musk",
+							"type": "text"
+						},
+						{
+							"key": "birthday_date",
+							"value": "2000-12-17",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "Asia/Jakarta",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('response status code should have 200 value', () => {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('response Content-Type header should have application/json value', () => {\r",
+							"   pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+							"}); \r",
+							"pm.test('response body should an object', () => {\r",
+							"   const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson).to.be.an('object');\r",
+							"}); \r",
+							"pm.test('response body should have the correct property and value', () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson).to.have.ownProperty('first_name');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('last_name');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('birthday_date');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('location');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('celebrated');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('_id');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('__v');\r",
+							"}); \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/users/61bc68d73e7eecb0f740f63b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"61bc68d73e7eecb0f740f63b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('response status code should have 200 value', () => {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('response Content-Type header should have application/json value', () => {\r",
+							"   pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+							"}); \r",
+							"pm.test('response body should an object', () => {\r",
+							"   const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson).to.be.an('object');\r",
+							"}); \r",
+							"pm.test('response body should have the correct property and value', () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson).to.have.ownProperty('first_name');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('last_name');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('birthday_date');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('location');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('celebrated');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('_id');\r",
+							"   pm.expect(responseJson).to.have.ownProperty('__v');\r",
+							"}); \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "first_name",
+							"value": "WilliamsME",
+							"type": "text"
+						},
+						{
+							"key": "last_name",
+							"value": "Wijaya",
+							"type": "text"
+						},
+						{
+							"key": "birthday_date",
+							"value": "2000-12-17",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "Asia/Jakarta",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/users/61bc68d73e7eecb0f740f63b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"61bc68d73e7eecb0f740f63b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('response status code should have 200 value', () => {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test('response Content-Type header should have application/json value', () => {\r",
+							"   pm.expect(pm.response.headers.get('Content-Type')).to.equals('application/json; charset=utf-8');\r",
+							"}); \r",
+							"pm.test('response body should an object', () => {\r",
+							"   const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson).to.be.an('object');\r",
+							"}); \r",
+							"pm.test('response body should have the correct property and value', () => {\r",
+							"  const responseJson = pm.response.json();\r",
+							"   pm.expect(responseJson).to.have.ownProperty('message');\r",
+							"   pm.expect(responseJson.message).to.equals('We deleted it!');\r",
+							"}); \r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/users/61bc6c97409206e9b6350788",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"61bc6c97409206e9b6350788"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
